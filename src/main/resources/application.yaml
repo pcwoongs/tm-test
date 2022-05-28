@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/trucking?allowPublicKeyRetrieval=true
+    username: trucking
+    password: welcome
+    hikari:
+      auto-commit: false
+      connection-timeout: 3000
+      max-lifetime: 180000
+      maximum-pool-size: 10
+      data-source-properties:
+        cachePrepStmts: true
+        rewriteBatchedStatements: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect:
+          storage_engine: innodb
+        format_sql: true
+        hbm2ddl.auto: none
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-local.yaml
+    drop-first: false
+    liquibase-schema : liquibase
+    user : liquibase
+    password : welcome
+
+
+
+
+
+

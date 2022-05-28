@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: sqlFile-localEnv
+      author : liquibase-initial
+      changes:
+        - sqlFile:
+            dbms: 'mysql'
+            endDelimiter: ;
+            splitStatements: true
+            path: classpath:db/migration/environment/common_initial_database_parameters.sql
+            stripComments : true
+  - includeAll:
+      path: classpath:db/migration/schema
+  - includeAll:
+      path: classpath:db/migration/increment

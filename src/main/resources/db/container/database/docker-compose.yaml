@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  lqdemo-local-database:
+    image: mysql:8
+    platform: linux/x86_64
+    hostname: trucking-local-database
+    container_name: trucking-local-database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: welcome
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./local_schema_initialisation.sql:/docker-entrypoint-initdb.d/local_schema_initialisation.sql
